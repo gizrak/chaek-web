@@ -1,0 +1,25 @@
+application: chaek-reader
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: false
+
+handlers:
+- url: /html
+  static_dir: html
+  
+- url: /js
+  static_dir: js
+  
+- url: /style
+  static_dir: style
+  
+- url: /.*
+  script: cloudbook.app
+
+libraries:
+- name: jinja2
+  version: latest
+
+- name: PIL
+  version: latest

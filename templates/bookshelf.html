@@ -1,0 +1,81 @@
+{% extends "/templates/base.html" %}
+{% block title %}Book Shelf{% endblock %}
+{% block head %}Book Shelf{% endblock %}
+{% block external %}
+<style type="text/css">
+    body {
+        font: 62.5% "Trebuchet MS", sans-serif;
+        margin: 50px;
+    }    #nav {
+    float: right;
+    }
+    ul.booklist {
+        display: inline;
+        padding: 0 0 0 0;
+        margin: 0 0 0 0;
+    }    ul.booklist li {
+        float: left;
+        list-style-type: none;
+        margin: 1em 1em 1em 1em;
+    }
+</style>
+<script type="text/javascript" src="/js/bookshelf.js"></script>
+<script type="text/javascript">
+    /**
+     * Load Bookshelf onLoad
+     */
+    $(function() {
+        $.ajax({
+            url : "/booklist",
+            type : "GET",
+            complete : displayBookshelfCallback
+        });
+        toast('info', 'Page loaded.');
+    });
+    $(function() {
+        // Tabs
+        $('#tabs').tabs();
+
+        // Buttons
+        $('#btnUpload').button({
+            icons : {
+                primary : 'ui-icon-plusthick'
+            }
+        });
+    });
+
+</script>
+{% endblock %}
+{% block content %}
+<div style="width:77%; float:left; margin-bottom:20px;">
+    <div id="tabs">
+        <ul>
+            <li>
+                <a href="#tabs-1">All</a>
+            </li>
+            <li>
+                <a href="#tabs-2">Author</a>
+            </li>
+        </ul>
+        <div id="tabs-1">
+            <ul class="booklist"></ul>
+            <br style="clear:both">
+        </div>
+        <div id="tabs-2">
+            Testing...
+        </div>
+    </div>
+</div>
+<div style="width:20%; display:block; float:right; vertical-align:top; ">
+    <p class="hint">
+        <strong>Hint:</strong> You can upload your epub file to cloud server and enjoy it via reader.
+    </p>
+    <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return checkform(this);">
+        <p>
+            <input type="file" name="epub">
+            <input id="btnUpload" type="submit" value="Upload">
+        </p>
+    </form>
+    <div id="message" class="ui-widget"></div>
+</div>
+{% endblock %} 
