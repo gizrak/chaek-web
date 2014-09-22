@@ -1,0 +1,20 @@
+﻿{
+  "name": "Cloud Book",
+  "description": "Read your epub files on web browser and keep it on cloud server.",
+  "version": "4",
+  "app": {
+    "urls": [
+      "http://book.gizrak.com/"
+    ],
+    "launch": {
+      "web_url": "http://book.gizrak.com/"
+    }
+  },
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications"
+  ]
+}
